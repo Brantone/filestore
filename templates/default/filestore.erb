@@ -1,0 +1,16 @@
+server {
+  listen   <%= node['nginx']['port'] -%>;
+  server_name  <%= node['hostname'] %>;
+
+  access_log  <%= node['nginx']['log_dir'] %>/filestore.access.log;
+
+  location / {
+    root <%= node['filestore']['root'] %>;
+    client_body_temp_path <%= node['filestore']['temp'] %>;
+    client_max_body_size 0M;
+
+    autoindex     on;
+
+    allow all;
+  }
+}
