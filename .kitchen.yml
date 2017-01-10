@@ -21,3 +21,10 @@ suites:
     verifier:
       inspec_tests:
         - test/recipes
+  - name: localstore
+    driver:
+      vm_hostname: filestore.local
+      synced_folders:
+        - ["/Users/[[HOST_PATH_TO_FILES]]", "/var/www/filestore/", "create: true"]
+    run_list:
+      - recipe[filestore::default]
